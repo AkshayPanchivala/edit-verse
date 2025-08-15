@@ -1,16 +1,17 @@
-import { Node, mergeAttributes } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import PageBreakComponent from '../components/PageBreakComponent'
+import { Node, mergeAttributes } from '@tiptap/core';
 
 export interface PageBreakOptions {
-  HTMLAttributes: Record<string, any>
+  HTMLAttributes: Record<string, any>;
 }
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
-    pageBreak: {
-      setPageBreak: () => ReturnType
-    }
+    setPageBreak: {
+      /**
+       * Add a page break
+       */
+      setPageBreak: (options?: { manual?: boolean }) => ReturnType;
+    };
   }
 }
 
@@ -19,46 +20,38 @@ export const PageBreak = Node.create<PageBreakOptions>({
 
   group: 'block',
 
-  atom: true,
+  addOptions() {
+    return {
+      HTMLAttributes: {},
+    };
+  },
+
+  addAttributes() {
+    return {
+      'data-manual-page-break': {
+        default: null,
+        parseHTML: (element) => element.getAttribute('data-manual-page-break'),
+      },
+      'data-auto-page-break': {
+        default: null,
+        parseHTML: (element) => element.getAttribute('data-auto-page-break'),
+      },
+    };
+  },
 
   parseHTML() {
-    return [
-      {
-        tag: 'div[data-page-break]',
-      },
-    ]
+    return [{ tag: 'hr[data-page-break]' }];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return [
-      'div',
-      mergeAttributes(HTMLAttributes, {
-        'data-page-break': 'true',
-        style: 'page-break-before: always; break-before: page; height: 0; border: none; margin: 0; padding: 0; display: block;'
-      }),
-    ]
-  },
-
-  addNodeView() {
-    return ReactNodeViewRenderer(PageBreakComponent)
+    return ['hr', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, { 'data-page-break': 'true' })];
   },
 
   addCommands() {
     return {
-      setPageBreak:
-        () =>
-        ({ chain }) => {
-          return chain()
-            .insertContent({ type: this.name })
-            .run()
-        },
-    }
+      setPageBreak: (options) => ({ commands }) => {
+        return commands.insertContent({ type: this.name, attrs: { 'data-manual-page-break': options?.manual ? 'true' : null } });
+      },
+    };
   },
-
-  addKeyboardShortcuts() {
-    return {
-      'Ctrl-Enter': () => this.editor.commands.setPageBreak(),
-      'Cmd-Enter': () => this.editor.commands.setPageBreak(),
-    }
-  },
-})
+});
