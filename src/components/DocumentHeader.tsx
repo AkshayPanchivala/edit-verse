@@ -40,8 +40,8 @@ const DocumentHeader: React.FC<DocumentHeaderProps> = ({
                 <FileText size={20} className="text-blue-600" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">A4 Document Editor</h1>
-                <p className="text-sm text-gray-500">Professional document editing with pagination</p>
+                <h1 className="text-xl font-semibold text-gray-900">EditVerse</h1>
+                <p className="text-sm text-gray-500">A robust and interactive web-based document editor.</p>
               </div>
             </div>
             <div className="flex items-center space-x-4 text-sm text-gray-600">
