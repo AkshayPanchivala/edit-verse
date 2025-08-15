@@ -61,7 +61,7 @@ edit-verse/
     └───extensions\
         └───PageBreak.ts
 ```
-```
+
 
 ## Getting Started
 
@@ -78,10 +78,8 @@ Ensure you have the following installed on your machine:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd project # Navigate into the project directory
-    ```
-    *(Note: Replace `<repository-url>` with the actual URL if this project is hosted on Git.)*
+    git clone https://github.com/AkshayPanchivala/edit-verse
+    cd edit-verse # Navigate into the project directory
 
 2.  **Install dependencies:**
     ```bash
