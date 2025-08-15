@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ProseMirror {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.ProseMirror > div[data-page] {
+  background: white;
+  padding: 1in;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  min-height: 11in;
+  width: 8.5in;
+}
+
+hr[data-page-break] {
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 2rem 0;
+}

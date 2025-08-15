@@ -1,5 +1,6 @@
 {
-  "name": "Word Doc",
+  "name": "edit-verse",
+  "description": "A modern web-based document editor built with React and Vite.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
