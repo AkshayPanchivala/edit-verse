@@ -21,3 +21,137 @@ hr[data-page-break] {
   border-top: 2px dashed #ccc;
   margin: 2rem 0;
 }
+
+/* TipTap Editor Styles */
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.ProseMirror h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+  padding-left: 0.5em;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+  padding-left: 0.5em;
+}
+
+.ProseMirror li {
+  margin: 0.25em 0;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror strong {
+  font-weight: bold;
+}
+
+.ProseMirror em {
+  font-style: italic;
+}
+
+.ProseMirror u {
+  text-decoration: underline;
+}
+
+/* Print Styles */
+@media print {
+  /* Hide non-printable elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset page styles */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  /* Document page styles */
+  .document-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    transform: none !important;
+    overflow: hidden;
+  }
+
+  /* Ensure page breaks work correctly */
+  hr[data-page-break] {
+    page-break-before: always !important;
+    break-before: page !important;
+    display: block !important;
+    height: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* ProseMirror content */
+  .ProseMirror {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  /* Prevent orphans and widows */
+  p, h1, h2, h3, h4, h5, h6 {
+    orphans: 3;
+    widows: 3;
+    page-break-inside: avoid;
+  }
+
+  /* Keep lists together */
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  /* Headings shouldn't be separated from following content */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+
+  /* Remove any transforms or scaling */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
